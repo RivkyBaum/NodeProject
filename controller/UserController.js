@@ -1,7 +1,7 @@
 const User=require('../User')
 var listUsres=[
     {id:1,name:"aaa",email:"fff@ddd"},
-    {id:2,name:"aaa",email:"fff@ddd"},
+    {id:2,name:"hhh",email:"fff@ddd"},
     {id:3,name:"aaa",email:"fff@ddd"},
 
 ]
