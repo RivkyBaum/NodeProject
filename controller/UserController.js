@@ -1,7 +1,7 @@
 const User = require('../User')
 var listUsres = [
     { id: 1, name: "bbb", email: "fff@ddd", phone: "999999" },
-    { id: 2, name: "hhh", email: "fff@ddd", phone: "999999" },
+    { id: 2, name: "Yehudit", email: "fff@ddd", phone: "999999" },
     { id: 3, name: "Rivky", email: "fff@ddd", phone: "055332545" },
 
 ]
