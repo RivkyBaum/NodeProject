@@ -4,9 +4,12 @@ const router = express.Router()
 
 const {
     getById,
-    Add
-} = require('../controller/user')
-router.post('/', getById)
-router.get('/', Add)
+    Add,
+    getAll
+} = require('../controller/UserController')
+router.post('/Add', Add)
+router.get('/getById/:id', getById)
+router.get('/getAll', getAll)
+
 
 module.exports = router

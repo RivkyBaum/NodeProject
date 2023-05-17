@@ -1,15 +1,21 @@
 const express=require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
-const cors = require('cors')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-const jwt = require('jsonwebtoken')
-const app = express()
-const UserRouter = require('./routes/UserRoute')
-const port=3000
 
+//יצירת שרת
+const app = express()
+//יצירת ראוטר
+const UserR = require('./routes/UserRoute')
+const port=3007
+app.use(bodyParser.json())
 app.use(morgan('dev'))
+app.use('/', (req, res, next) => {
+    console.log("succeed");
+    next()
+})
+//יצירת הניתוב-בניתוב זה יביא את הפונקציות שיש בקובץ הניתובים
+app.use('/UserRoute',UserR)
+//הרשאות
 app.use((req, res, next) => {
     //origin, headers, methods
     res.header('Access-Control-Allow-Origin', '*')
@@ -20,9 +26,13 @@ app.use((req, res, next) => {
     }
     next()
 })
+//ניתוב ברירת מחדל שיכתוב הערה
 app.get('/', (req, res) => {
-    res.status(200).json({ 'message': 'hello!!!!! :):)' })
+    res.status(200).json({ 'message': 'hello!!!!! :)' })
 })
-app.listen(3000, () => {
-    console.log(':) Rivky');
+//שיביא בקונסול את כתובת השרת
+app.listen(port, () => {
+    console.log('wow');
+    console.log(`my app is listening on http://localhost:${port}`);
+
 })
