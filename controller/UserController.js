@@ -2,7 +2,7 @@ const User = require('../User')
 var listUsres = [
     { id: 1, name: "bbb", email: "fff@ddd", phone: "999999" },
     { id: 2, name: "hhh", email: "fff@ddd", phone: "999999" },
-    { id: 3, name: "ggg", email: "fff@ddd", phone: "055332545" },
+    { id: 3, name: "Rivky", email: "fff@ddd", phone: "055332545" },
 
 ]
 const axios = require('axios');
@@ -16,25 +16,35 @@ module.exports = {
         res.send(listUsres)
     },
     Add: (req, res) => {
-        let newUser = req.body
+        let _id=req.body.id
+        let _name=req.body.name
+        let _email=req.body.email
+        let _phone=req.body.phone
+
+        if(_id>4 && _id<7)
+        res.send(_id)
+        let newUser = {_id,_name,_email,_phone}
         let phoneUser = req.body.phone
         
-        axios.get(`https://phonevalidation.abstractapi.com/v1/?api_key=66a5643d396849e489687cbe7aafb0e6&phone=${phoneUser}`)
-            .then(response => {
-                console.log(response.data);
+        // axios.get(`https://phonevalidation.abstractapi.com/v1/?api_key=66a5643d396849e489687cbe7aafb0e6&phone=${phoneUser}`)
+        //     .then(response => {
+        //         console.log(response.data);
                 listUsres.push(newUser)
                 // res.status(200).send(newUser)
                 res.send(listUsres)
 
-            })
-            .catch(error => {
-                console.log(error);
-                res.status(404).send(error)
-            });
+            // })
+            // .catch(error => {
+            //     console.log(error);
+            //     res.status(404).send(error)
+            // });
     
 
-    }
-    // Delete:(req,res)=>{
-    //     let user=
-    // }
+    },
+    Delete:(req,res)=>{
+        let idUser=req.params.id
+        res.status(200).send(listUsres.find(a => a.id == idUser))
+        res.status(200).send(listUsres.Delete(listUsres[req.params.idUser]))
+        res.send("delete!")
+    },
 }

@@ -4,15 +4,17 @@ const bodyParser = require('body-parser')
 
 //יצירת שרת
 const app = express()
-//יצירת ראוטר
-const UserR = require('./routes/UserRoute')
-const port=3007
+
+const port=3005
+
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use('/', (req, res, next) => {
     console.log("succeed");
     next()
 })
+//יצירת ראוטר
+const UserR = require('./routes/UserRoute')
 //יצירת הניתוב-בניתוב זה יביא את הפונקציות שיש בקובץ הניתובים
 app.use('/UserRoute',UserR)
 //הרשאות
