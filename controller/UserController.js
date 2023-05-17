@@ -2,7 +2,7 @@ const User = require('../User')
 var listUsres = [
     { id: 1, name: "aaa", email: "fff@ddd", phone: "999999" },
     { id: 2, name: "hhh", email: "fff@ddd", phone: "999999" },
-    { id: 3, name: "ggg", email: "fff@ddd", phone: "055332545" },
+    { id: 3, name: "Rivky", email: "fff@ddd", phone: "055332545" },
 
 ]
 const axios = require('axios');
