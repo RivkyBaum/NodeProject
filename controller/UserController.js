@@ -1,12 +1,13 @@
-//helow-----------
 const User = require('../User')
+const axios = require('axios');
+
+//data -מערך משתמשים 
 var listUsres = [
     { id: 1, name: "bbb", email: "fff@ddd", phone: "999999" },
     { id: 2, name: "Yehudit", email: "fff@ddd", phone: "999999" },
     { id: 3, name: "Rivky", email: "fff@ddd", phone: "055332545" },
-
 ]
-const axios = require('axios');
+
 module.exports = {
     getById: (req, res) => {
         let _id = req.params.id
@@ -16,32 +17,34 @@ module.exports = {
     getAll: (req, res) => {
         res.send(listUsres)
     },
+    //חייבים לעשות את הפונקציה אסינכרונית כי זה עושה כמה קריאות שרת
     Add: (req, res) => {
-        let _id=req.body.id
-        let _name=req.body.name
-        let _email=req.body.email
-        let _phone=req.body.phone
-
-        if(_id>4 && _id<7)
-        res.send(_id)
-        let newUser = {_id,_name,_email,_phone}
-        let phoneUser = req.body.phone
-        
-        // axios.get(`https://phonevalidation.abstractapi.com/v1/?api_key=66a5643d396849e489687cbe7aafb0e6&phone=${phoneUser}`)
-        //     .then(response => {
-        //         console.log(response.data);
-                listUsres.push(newUser)
-                // res.status(200).send(newUser)
-                res.send(listUsres)
-
-            // })
-            // .catch(error => {
-            //     console.log(error);
-            //     res.status(404).send(error)
-            // });
-    
-
+        //לתאריכים צריך לטפל בזה פה
+        //const urlDate= `https://www.hebcal.com/converter?cfg=json&date=${req.body.date}g2h=1&strict=1`
+        const UrlUuid = "https://www.uuidgenerator.net/api/guid.json"
+        let new_user = req.body;
+        axios.get(`https://phonevalidation.abstractapi.com/v1/?api_key=8cf0533e9612479b89fa5b6065107408&phone=${req.body.phone}`)
+        .then(response => {
+            console.log(response.data.valid)
+           if(response.data.valid==false)
+              res.send("not validate")
+           else
+           {
+            // Uuid אם המס' תקין תוסיף 
+            const responseFromUuid = axios.get(UrlUuid);
+            new_user.id=responseFromUuid.data
+            listUsres.push(new_user)
+            res.send(new_user)
+           }
+              
+        })
+        .catch(error => {
+            console.log(error);
+        });
+              
     },
+
+    //לא עובד!!
     Delete:(req,res)=>{
         const userId = req.params.id;
         const index = listUsres.find (user => user.id === userId);
