@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 //יצירת שרת
 const app = express()
 
-const port=3005
+const port=3003
 
 app.use(bodyParser.json())
 app.use(morgan('dev'))
