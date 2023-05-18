@@ -1,11 +1,9 @@
-//hellow
 const express=require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
-//יצירת שרת
 const app = express()
 const port=4000
-//midlleware:
+
 //הרשאות  
 app.use((req, res, next) => {
     //origin, headers, methods
@@ -19,11 +17,11 @@ app.use((req, res, next) => {
 })
 app.use(bodyParser.json())
 app.use(morgan('dev'))
-//
 app.use('/', (req, res, next) => {
     console.log("succeed");
     next()
 })
+
 //יצירת ראוטר
 const UserR = require('./routes/UserRoute')
 //יצירת הניתוב-בניתוב זה יביא את הפונקציות שיש בקובץ הניתובים
