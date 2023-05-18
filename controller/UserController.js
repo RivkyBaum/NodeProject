@@ -1,6 +1,8 @@
 const User = require('../User')
 const axios = require('axios');
-
+const express = require('express');
+const app = express();
+const http = require('http');
 //data -מערך משתמשים 
 var listUsres = [
     { id: 1, name: "lea", email: "fff@ddd", phone: "999999" },
@@ -8,6 +10,34 @@ var listUsres = [
     { id: 3, name: "Rivky", email: "fff@ddd", phone: "055332545" },
 
 ]
+const server = http.createServer((req, res) => {
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const clientId = parseInt(url.pathname.split('/')[2]);
+    
+    // Find the client with the given ID
+    let clientFound = false;
+    for (let i = 0; i < listUsres.length; i++) {
+      if (listUsres[i].id === clientId) {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(listUsres[i]));
+        clientFound = true;
+        break;
+      }
+    }
+    
+    // If client is not found, return a 404 response
+    if (!clientFound) {
+      res.statusCode = 404;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('Client not found');
+      return;
+    }
+  })
+  
+//   Start the server
+//   server.listen(3000, () => {
+//     console.log('Server started on port 3000');
+//   })
 
 module.exports = {
     getById: async (req, res) => {
