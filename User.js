@@ -1,10 +1,11 @@
 class User{
-    _id=1
-    constructor(id=this._id++,name,email,phone){
+    constructor(id,name,email,phone,date){
+
         this.id=id;
         this.name-name;
         this.email=email;
         this.phone=phone;
+        this.date=date;
     }
 }
 module.exports=User;
