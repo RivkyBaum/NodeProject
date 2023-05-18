@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const port=3006
 //midlleware:
-//הרשאות
+//הרשאות  
 app.use((req, res, next) => {
     //origin, headers, methods
     res.header('Access-Control-Allow-Origin', '*')
