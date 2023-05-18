@@ -88,7 +88,7 @@ module.exports = {
     Delete:(req,res)=>{
         let idUser=req.params.id
         res.status(200).send(listUsres.find(a => a.id == idUser))
-        res.status(200).send(listUsres.splice(listUsres[idUser]))
+        res.status(200).send(listUsres.Delete(listUsres[req.params.idUser]))
         res.send("delete!")
     },
 }
