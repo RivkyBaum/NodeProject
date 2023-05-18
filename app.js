@@ -36,7 +36,6 @@ app.use('/', (req, res, next) => {
     console.log("succeed");
     next()
 })
-//יצירת ראוטר
 
 //שיביא בקונסול את כתובת השרת
 app.listen(port, () => {
