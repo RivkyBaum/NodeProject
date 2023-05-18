@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 //יצירת שרת
 const app = express()
-const port=3006
+const port=4000
 //midlleware:
 //הרשאות  
 app.use((req, res, next) => {
