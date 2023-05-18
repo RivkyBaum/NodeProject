@@ -35,11 +35,7 @@ app.use('/', (req, res, next) => {
     console.log("succeed");
     next()
 })
-//יצירת ראוטר
-const UserR = require('./routes/UserRoute')
-//יצירת הניתוב-בניתוב זה יביא את הפונקציות שיש בקובץ הניתובים
-app.use('/UserRoute',UserR)
-
+//יצירת
 //ניתוב ברירת מחדל שיכתוב הערה
 app.get('/', (req, res) => {
     res.status(200).json({ 'message': 'hello!!!!! :)' })
