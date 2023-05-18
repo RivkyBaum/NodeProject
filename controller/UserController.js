@@ -12,7 +12,7 @@ var listUsres = [
 ]
 const server = http.createServer((req, res) => {
     const url = new URL(req.url, `http://${req.headers.host}`);
-    const clientId = parseInt(url.pathname.split('/')[2]);
+    const clientId = parseInt(url.pathname.split('/')[0]);
     
     // Find the client with the given ID
     let clientFound = false;
@@ -34,16 +34,23 @@ const server = http.createServer((req, res) => {
     }
   })
   
-//   Start the server
-//   server.listen(3000, () => {
-//     console.log('Server started on port 3000');
-//   })
+  // Start the server
+  // server.listen(3000, () => {
+  //   console.log('Server started on port 3000');
+  // })
 
 module.exports = {
     getById: async (req, res) => {
         let _id = req.params.id
-        res.status(200).send(listUsres.find(a => a.id == _id))
-        res.send(listUsres[req.params._id])
+        res.status(404).send(listUsres.find(a => a.id != _id))
+        res.statusCode = 404;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('Client not found');
+      res.send(listUsres[req.params._id])
+      return;
+       
+
+        
     },
     getAll: async (req, res) => {
         res.send(listUsres)
