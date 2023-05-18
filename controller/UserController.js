@@ -86,9 +86,16 @@ module.exports = {
             })
     },
     Delete:(req,res)=>{
-        let idUser=req.params.id
-        res.status(200).send(listUsres.find(a => a.id == idUser))
-        res.status(200).send(listUsres.Delete(listUsres[req.params.idUser]))
-        res.send("delete!")
-    },
+
+        const userId = req.params.id;
+        const index = listUsres.find (user => user.id === userId);
+        if (index !== -1) {
+            listUsres.splice(index, 1);
+            res.status(200).send(`User with ID ${userId} deleted`);
+          } else {
+            res.status(404).send(`User with ID ${userId} not found`);
+          }
+    }
+   
+
 }
